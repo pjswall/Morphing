@@ -1,7 +1,7 @@
 # Morphing
 Morphing is a process of creating a single identity from two different identities(but follow some similarity constraints). The morph image can match with both the identities which are used for generating that image. The work presented here is related with morph attack detection and tries to detect the morphed image with single image only without any reference image as aid to detection which is the first work in this direction. Existing methods only work with a reference image. It will boost secutrity at border control systems. We do separation of a morph image into its constituents ID's using GAN based approach with biometric loss function as a separation critic along with GAN loss and Pixel loss.
 
-<img src="" width="200px" height="200px" alt="architecture.jpg" align=center />
+<img src="https://github.com/prateekj7777/Morphing/blob/main/arch..jpg" width="200px" height="200px" alt="architecture.jpg" align=center />
 </div>
 </br>
 
