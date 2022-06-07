@@ -37,15 +37,17 @@ using pip
 
 We have used two face morph datasets.
 
-**AMSL Dataset
+### AMSL Dataset
 
 This dataset contains morph images from 102 subjects captured with neutral as well as smiling expressions. Thare are 2175 morphed images corresponding to 92 subjects created using a landmark-based approach. 
 
-**E-MorGAN Dataset
+### E-MorGAN Dataset
+
 
 This dataset created using GAN's and all the morphed images are generated with the GAN architecture called MorGAN. Dataset is having at 1000 images which are splittes as train and test sets of 500 images in each set.
 
-**Dataset specification
+Dataset specification
+---------------------
 
 
 | Dataset 	| split 	| Morphed/Non-morphed 	| no. of species | No. of images
