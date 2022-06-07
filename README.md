@@ -13,7 +13,7 @@ Please install following packages
 - deepface=0.0.74
 - Pillow==3.1.2
 - psutil==3.4.2
-- maatplotlib
+- matplotlib
 
 # How to RUN
 1. Download the data files for the required model. Extract and place it in the data folder.
