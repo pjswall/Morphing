@@ -38,7 +38,7 @@ For loading data you need check wheather the respective class has been called or
     |   ├── Demo
     |   ├── Morphed_Train
     |   ├── Set1
-    |   └── Set 2
+    |   └── Set2
     ├── REGEN/
         ├── test
         ├── train
