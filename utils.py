@@ -348,6 +348,192 @@ class MORGAN(Dataset):
         return data
 
 
+class EMORGAN(Dataset):
+
+    def __init__(self, root_dir_1, img_size, suff='.jpg', is_train=True):
+        self.root_dir_1 = root_dir_1
+    
+        self.dirs_1 = glob.glob(os.path.join(self.root_dir_1, '*'+suff))
+
+        self.img_size = img_size
+        
+        self.current_path = os.getcwd()
+
+        if is_train:
+            
+            self.augm = DataAugmentation(
+                img_size=self.img_size,
+                with_random_hflip=False,
+                with_random_crop=False)
+    
+            self.dir3 = []
+            morph_titles = os.listdir(self.root_dir_1)
+                
+            pattern = re.compile(r'\d+\_\d+\_\d+')
+                   
+            for title in morph_titles:
+
+                m = re.search(pattern,title)
+
+                if m is not None:
+
+                    m1 = m.group(0)
+                    self.dir3.append(self.current_path +"/datasets/EMOR/Morphed_Train/"+"Mor"+m1+".jpg")
+                    
+                    
+    
+        else:
+            
+            self.augm = DataAugmentation(
+                img_size=self.img_size,
+                with_random_hflip=False,
+                with_random_crop=False)
+    
+            self.dir3 = []
+            morph_titles = os.listdir(self.root_dir_1)
+                
+            pattern = re.compile(r'\d+\_\d+\_\d+')
+                
+            for title in morph_titles:
+
+                m = re.search(pattern,title)
+
+                if m is not None:
+
+                    m1 = m.group(0)
+                    self.dir3.append(self.current_path +"/datasets/EMOR/Morphed_Test/"+"Mor"+m1+".jpg")
+        
+
+    def __len__(self):
+        return len(self.dir3)
+
+    def __getitem__(self, idx):
+        if torch.is_tensor(idx):
+            idx = idx.tolist()
+
+        str = self.dir3[idx]
+
+        
+
+        pattern = re.compile(r'\d+\_\d+\_\d+')
+        m = re.search(pattern,str)
+
+        m1 = m.group(0)
+
+        path1 = self.current_path + "/datasets/EMOR/Set1/"+ "Mor" +m1 +".jpg"
+        path2 = self.current_path + "/datasets/EMOR/Set2/"+ "Mor" +m1 +".jpg"
+      
+        gt1 = cv2.imread(path1, cv2.IMREAD_COLOR)
+        gt1 = cv2.cvtColor(gt1, cv2.COLOR_BGR2RGB)
+    
+        gt2 = cv2.imread(path2, cv2.IMREAD_COLOR)
+        gt2 = cv2.cvtColor(gt2, cv2.COLOR_BGR2RGB)
+      
+        img_mix = cv2.imread(self.dir3[idx], cv2.IMREAD_COLOR)
+        img_mix = cv2.cvtColor(img_mix, cv2.COLOR_BGR2RGB)
+    
+        img_mix, gt1, gt2 = self.augm.transform_triplets(img_mix, gt1, gt2)
+
+        data = {
+            'input': img_mix,
+            'gt1': gt1,
+            'gt2': gt2
+        }
+        
+
+        return data
+
+class REGEN_MORPH(Dataset):
+
+    def __init__(self, root_dir_1, img_size, suff='.jpg', is_train=True):
+        self.root_dir_1 = root_dir_1
+    
+        self.dirs_1 = glob.glob(os.path.join(self.root_dir_1, '*'+suff))
+
+        self.img_size = img_size
+        
+        self.current_path = os.getcwd()
+
+        if is_train:
+            
+            self.augm = DataAugmentation(
+                img_size=self.img_size,
+                with_random_hflip=False,
+                with_random_crop=False)
+    
+            self.dir3 = []
+            morph_titles = os.listdir(self.root_dir_1)
+            morph_map = dict()
+                
+            pattern = re.compile(r'\d+\_\d+\_\d+')
+                   
+            for title in morph_titles:
+                morph_map[title[:10]] = title
+
+            for title in morph_titles:
+                self.dir3.append(self.current_path +"/datasets/REGEN/train/"+ title)
+                    
+                    
+    
+        else:
+            
+            self.augm = DataAugmentation(
+                img_size=self.img_size,
+                with_random_hflip=False,
+                with_random_crop=False)
+    
+            self.dir3 = []
+            morph_titles = os.listdir(self.root_dir_1)
+            morph_map = dict()
+
+            for title in morph_titles:
+                morph_map[title[:10]] = title
+                
+            for title in morph_titles:
+                self.dir3.append(self.current_path +"/datasets/REGEN/test/"+ title)
+        
+
+    def __len__(self):
+        return len(self.dir3)
+
+    def __getitem__(self, idx):
+        if torch.is_tensor(idx):
+            idx = idx.tolist()
+
+        str = self.dir3[idx]
+        
+        p = re.compile(r'\d+d+\d+')
+        p_ = re.compile(r'\-\d+d+\d+')
+        m = re.search(p,str)
+        m_ = re.search(p_, str)
+
+        m1 = m.group(0)
+        m2= m_.group(0)
+        m2 = m2[1:]
+
+        path1 = self.current_path + "/datasets/REGEN/gt/"+ m1 + ".jpg"
+        path2 = self.current_path + "/datasets/REGEN/gt/"+ m2 + ".jpg"
+      
+        gt1 = cv2.imread(path1, cv2.IMREAD_COLOR)
+        gt1 = cv2.cvtColor(gt1, cv2.COLOR_BGR2RGB)
+    
+        gt2 = cv2.imread(path2, cv2.IMREAD_COLOR)
+        gt2 = cv2.cvtColor(gt2, cv2.COLOR_BGR2RGB)
+      
+        img_mix = cv2.imread(self.dir3[idx], cv2.IMREAD_COLOR)
+        img_mix = cv2.cvtColor(img_mix, cv2.COLOR_BGR2RGB)
+    
+        img_mix, gt1, gt2 = self.augm.transform_triplets(img_mix, gt1, gt2)
+
+        data = {
+            'input': img_mix,
+            'gt1': gt1,
+            'gt2': gt2
+        }
+        
+
+        return data
+
 
 
 def get_loaders(args):
@@ -369,6 +555,24 @@ def get_loaders(args):
         val_set = MORGAN(
             root_dir_1=r'./datasets/MOR/Morphed_Test',
             img_size=128, suff='.jpg', is_train=False)
+
+    elif args.dataset == 'EMOR':
+        training_set = EMORGAN(         
+            root_dir_1=r'./datasets/EMOR/Morphed_Train',
+            img_size=128, suff='.jpg', is_train=True) 
+        val_set = EMORGAN(
+            root_dir_1=r'./datasets/EMOR/Demo',
+            img_size=128, suff='.jpg', is_train=False)
+
+    elif args.dataset == 'REGEN':
+        training_set = REGEN_MORPH(         
+            root_dir_1=r'./datasets/REGEN/train',
+            img_size=128, suff='.jpg', is_train=True) 
+        val_set = REGEN_MORPH(
+            root_dir_1=r'./datasets/REGEN/test',
+            img_size=128, suff='.jpg', is_train=False)
+
+    
 
 
     else:
