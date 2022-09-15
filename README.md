@@ -25,6 +25,7 @@ For loading data you need check wheather the respective class has been called or
 
 # Directory Structure for Datasets
 
+```
 .
 └── datasets/
     ├── AMSL/
@@ -43,6 +44,7 @@ For loading data you need check wheather the respective class has been called or
         ├── train
         └── gt
         
+```
 
 # How to RUN
 1. Download the data files for the required model. Extract and place it in the data folder.
