@@ -23,6 +23,27 @@ Collect the dataset for AMSL or MORGAN then split the data for train test. Here 
 
 For loading data you need check wheather the respective class has been called or passed while doing training. Same applied for all the dataset create a class check wheather naming conventions are matching or not otherwise try changing the names of files.
 
+# Directory Structure for Datasets
+
+.
+└── datasets/
+    ├── AMSL/
+    │   ├── Morph
+    │   └── orig
+    ├── MOR/
+    |   ├── Morphed_Train
+    |   └── Morphed_Test
+    ├── EMOR/
+    |   ├── Demo
+    |   ├── Morphed_Train
+    |   ├── Set1
+    |   └── Set 2
+    ├── REGEN/
+        ├── test
+        ├── train
+        └── gt
+        
+
 # How to RUN
 1. Download the data files for the required model. Extract and place it in the data folder.
 2. Create a new virtual environment
