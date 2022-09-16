@@ -15,6 +15,7 @@
   * [Requirements](#requirements)
   * [Data Preprocessing](#data-preprocessing) 
   * [Directory Structure for Datasets](#directory-structure-for-datasets) 
+  * [Directory Structure for test outputs](#directory-structure-for-test-outputs)
   * [How to Run](#how-to-run)
   * [Training](#training)
     + [AMSL](#amsl)
@@ -59,27 +60,51 @@ Collect the dataset for AMSL or MORGAN then split the data for train test. Here 
 
 For loading data you need check wheather the respective class has been called or passed while doing training. Same applied for all the dataset create a class check wheather naming conventions are matching or not otherwise try changing the names of files.
 
-# Directory Structure for Datasets
+## Directory Structure for Datasets
 
 ```
 .
 └── datasets/
     ├── AMSL/
     │   ├── Morph
+    |   ├── Nonmorph
     │   └── orig
     ├── MOR/
     |   ├── Morphed_Train
+    |   ├── Nonmorph
     |   └── Morphed_Test
     ├── EMOR/
     |   ├── Demo
     |   ├── Morphed_Train
+    |   ├── Nonmorph
     |   ├── Set1
     |   └── Set2
     ├── REGEN/
         ├── test
         ├── train
+        ├── Nonmorph
         └── gt
         
+```
+## Directory Structure for test outputs
+
+```
+.
+└── eval_output/
+    ├── AMSL/
+    │   ├── Morph
+    |   ├── Nonmorph
+    ├── MOR/
+    |   ├── Morph
+    |   ├── Nonmorph
+    ├── EMOR/
+    |   ├── Morph
+    |   ├── Nonmorph
+    ├── REGEN/
+        ├── Morph
+        ├── Nonmorph
+
+
 ```
 
 # How to RUN
