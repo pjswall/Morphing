@@ -145,7 +145,7 @@ For training the model you need to change directory `$ cd Morphing`. Now you can
 # Testing
 
 For testing the datasets you have to run the following command
-> #python eval_unmix.py --dataset REGEN --ckptdir checkpoint --in_size 128 --net_G unet_128 --save_output
+> #python eval_unmix.py --dataset REGEN --test_mode morph --ckptdir checkpoint --in_size 128 --net_G unet_128 --save_output
 
 
 Here also you have to mention the dataset specifically when you are running like above.
