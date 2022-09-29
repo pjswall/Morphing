@@ -193,13 +193,12 @@ The baseline code taken from the git repo [Deep-Adversarial-Decomposition](https
 
 If you use this code for your research, please cite our paper:
 
-<!-- ``````
+``````
 @inproceedings{zou2020deep,
-  title={Deep Adversarial Decomposition: A Unified Framework for Separating Superimposed Images},
-  author={Zou, Zhengxia and Lei, Sen and Shi, Tianyang and Shi, Zhenwei and Ye, Jieping},
-  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
-  pages={12806--12816},
-  year={2020}
+  title={Facial De-morphing: Extracting Component Faces from a Single Morph (IJCB 2022)},
+  author={Sudipta Banerjee, Prateek Jaiswal, Arun Ross},
+  booktitle={Proceedings of the International Joint Conference on Biometrics},
+  year={2022}
 }
-`````` -->
+`````` 
 
