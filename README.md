@@ -194,7 +194,7 @@ The baseline code taken from the git repo [Deep-Adversarial-Decomposition](https
 If you use this code for your research, please cite our paper:
 
 ``````
-@inproceedings{zou2020deep,
+@inproceedings{fdmorph,
   title={Facial De-morphing: Extracting Component Faces from a Single Morph (IJCB 2022)},
   author={Sudipta Banerjee, Prateek Jaiswal, Arun Ross},
   booktitle={Proceedings of the International Joint Conference on Biometrics},
