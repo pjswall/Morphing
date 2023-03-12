@@ -22,9 +22,6 @@
   * [How to Run](#how-to-run)
   * [Training](#training)
     + [AMSL](#amsl)
-    + [MORGAN](#morgan)
-    + [EMORGAN](#emorgan)
-    + [REGEN](#regen)
   * [Testing](#testing)
   * [Dataset](#dataset)
     + [Dataset specification](#dataset-specification)
@@ -73,21 +70,6 @@ For loading data you need check wheather the respective class has been called or
     │   ├── Morph
     |   ├── Nonmorph
     │   └── orig
-    ├── MOR/
-    |   ├── Morphed_Train
-    |   ├── Nonmorph
-    |   └── Morphed_Test
-    ├── EMOR/
-    |   ├── Demo
-    |   ├── Morphed_Train
-    |   ├── Nonmorph
-    |   ├── Set1
-    |   └── Set2
-    ├── REGEN/
-        ├── test
-        ├── train
-        ├── Nonmorph
-        └── gt
         
 ```
 ## Directory Structure for test outputs
@@ -98,15 +80,6 @@ For loading data you need check wheather the respective class has been called or
     ├── AMSL/
     │   ├── Morph
     |   ├── Nonmorph
-    ├── MOR/
-    |   ├── Morph
-    |   ├── Nonmorph
-    ├── EMOR/
-    |   ├── Morph
-    |   ├── Nonmorph
-    ├── REGEN/
-        ├── Morph
-        ├── Nonmorph
 
 
 ```
@@ -137,19 +110,10 @@ For training the model you need to change directory `$ cd Morphing`. Now you can
 ## AMSL
 >  python train.py --dataset AMSL --net_G unet_128 --checkpoint_dir checkpoints --vis_dir val_out --max_num_epochs 200 --batch_size 2 --enable_d1d2 --enable_d3 --enable_synfake --enable_biometric_loss --output_auto_enhance --gpu_devices 0
 
-## MORGAN
->  python train.py --dataset MOR --net_G unet_128 --checkpoint_dir checkpoints --vis_dir val_out --max_num_epochs 200 --batch_size 2 --enable_d1d2 --enable_d3 --enable_synfake --enable_biometric_loss --output_auto_enhance --gpu_devices 0
-
-## EMORGAN
->  python train.py --dataset EMOR --net_G unet_128 --checkpoint_dir checkpoints --vis_dir val_out --max_num_epochs 200 --batch_size 2 --enable_d1d2 --enable_d3 --enable_synfake --enable_biometric_loss --output_auto_enhance --gpu_devices 0
-
-## REGEN
-> python train.py --dataset REGEN --net_G unet_128 --checkpoint_dir checkpoints --vis_dir val_out --max_num_epochs 200 --batch_size 2 --enable_d1d2 --enable_d3 --enable_synfake --enable_biometric_loss --output_auto_enhance --gpu_devices 0
-
 # Testing
 
 For testing the datasets you have to run the following command
-> #python eval_unmix.py --dataset REGEN --test_mode morph --ckptdir checkpoint --in_size 128 --net_G unet_128 --save_output
+> #python eval_unmix.py --dataset AMSL --test_mode morph --ckptdir checkpoint --in_size 128 --net_G unet_128 --save_output
 
 
 Here also you have to mention the dataset specifically when you are running like above.
@@ -164,11 +128,6 @@ We have used two face morph datasets.
 
 This dataset contains morph images from 102 subjects captured with neutral as well as smiling expressions. Thare are 2175 morphed images corresponding to 92 subjects created using a landmark-based approach. 
 
-### E-MorGAN Dataset
-
-
-This dataset created using GAN's and all the morphed images are generated with the GAN architecture called MorGAN. Dataset is having at 1000 images which are splittes as train and test sets of 500 images in each set.
-
 Dataset specification
 ---------------------
 
@@ -178,9 +137,6 @@ Dataset specification
 | AMSL | Train | Morphed | 73 | 946
 | AMSL | Test | Morphed | 16 | 56
 | AMSL | Test | Non-morphed | 29 | 57
-| E-MorGAN | Train | Morphed | 251 | 499
-| E-MorGAN | Test | Morphed | 90 | 100
-| E-MorGAN | Test | Non-morphed | 50 | 100
 
 Here, the required details about each dataset presented in the below table.
 
