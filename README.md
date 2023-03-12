@@ -5,7 +5,7 @@ Morphing is a process of creating a single identity from two different identitie
 </div>
 </br>
 
-# Requirements
+# Requirement
 Please install following packages 
 - numpy= 1.11.0
 - torch=1.9.-
