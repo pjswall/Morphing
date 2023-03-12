@@ -43,7 +43,7 @@ We recommend running this repository using [Anaconda](https://docs.anaconda.com/
 All dependencies for defining the environment
 
 ## Requirements
->>>>>>> 52eb3418c5c26cf2db84a134a1eaac36de9ddd73
+>>
 Please install following packages 
 - numpy= 1.11.0
 - torch=1.9.-
