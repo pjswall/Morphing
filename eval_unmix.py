@@ -20,6 +20,8 @@ parser = argparse.ArgumentParser(description='EVAL_UNMIX')
 parser.add_argument('--dataset', type=str, default='dogs', metavar='str',
                     help='dataset name from [dogs, imagenetsubset],'
                          '(default: dogs)')
+parser.add_argument('--test_mode', type=str, default='Morph', 
+                    help='select test type for the model, from [Morph, Nonmorph]')
 parser.add_argument('--in_size', type=int, default=256, metavar='N',
                     help='size of input image during eval')
 parser.add_argument('--ckptdir', type=str, default='./checkpoints',
@@ -110,7 +112,7 @@ def run_eval(args):
         for title in non_morph_titles:
             val1_dirs.append(current_path+"/datasets/AMSL/NonMorph/"+non_morph_map[title[:6]])
 
-    elif args.dataset == 'MOR':
+    elif args.dataset == 'MOR' or args.dataset == 'EMOR' or args.dataset == 'REGEN':
 
         pattern = re.compile(r'\d+\_\d+\_\d+')
         for title in morph_titles:
@@ -125,50 +127,65 @@ def run_eval(args):
     for idx in range(len(val1_dirs)):
 
         if args.dataset == 'AMSL':
+
+            if args.test_mode == 'Morph':
             
-            # str = val_dirs[idx]
-            # # print(str)                   # For morph images 
-            # path1 = current_path +"/datasets/AMSL/orig/"+ orig_img_map[str[-14:-11]]
-            # path2 = current_path +"/datasets/AMSL/orig/"+ orig_img_map[str[-7:-4]] 
-            # path3 = str
+                str = val_dirs[idx]
+                path1 = current_path +"/datasets/AMSL/orig/"+ orig_img_map[str[-14:-11]]
+                path2 = current_path +"/datasets/AMSL/orig/"+ orig_img_map[str[-7:-4]] 
+                path3 = str
+
+                img1 = cv2.imread(path1,cv2.IMREAD_COLOR)
+                img1 = cv2.cvtColor(img1,cv2.COLOR_BGR2RGB)
+                img2 = cv2.imread(path2,cv2.IMREAD_COLOR)       
+                img2 = cv2.cvtColor(img2,cv2.COLOR_BGR2RGB)
+                img3 = cv2.imread(path3,cv2.IMREAD_COLOR)
+                img3 = cv2.cvtColor(img3,cv2.COLOR_BGR2RGB)
+
+
+            else:
             
-            path4 = val1_dirs[idx]
-                                         #For non morph images
+                path4 = val1_dirs[idx]                           #For non morph images
+                
+                img1 = cv2.imread(path4,cv2.IMREAD_COLOR)
+                img1 = cv2.cvtColor(img1,cv2.COLOR_BGR2RGB)
+                img2 = cv2.imread(path4,cv2.IMREAD_COLOR)        
+                img2 = cv2.cvtColor(img2,cv2.COLOR_BGR2RGB)
+                img3 = cv2.imread(path4,cv2.IMREAD_COLOR)
+                img3 = cv2.cvtColor(img3,cv2.COLOR_BGR2RGB)
+
+        elif args.dataset == 'MOR' or args.dataset == 'EMOR' or args.dataset == 'REGEN':
             
-            # img1 = cv2.imread(path1,cv2.IMREAD_COLOR)
-            # img1 = cv2.cvtColor(img1,cv2.COLOR_BGR2RGB)
-            # img2 = cv2.imread(path2,cv2.IMREAD_COLOR)       # For Morph
-            # img2 = cv2.cvtColor(img2,cv2.COLOR_BGR2RGB)
-            # img3 = cv2.imread(path3,cv2.IMREAD_COLOR)
-            # img3 = cv2.cvtColor(img3,cv2.COLOR_BGR2RGB)
+            if args.test_mode == 'Morph':
+
+                str = val_dirs[idx]
+
+                pattern = re.compile(r'\d+\_\d+\_\d+')
+                m = re.search(pattern,str)
+
+                m1 = m.group(0)
+
+                path1 = self.current_path + "/datasets/MOR/set1/"+ "Mor" +m1 +".jpg"
+                path2 = self.current_path + "/datasets/MOR/set1/"+ "Mor" +m1 +".jpg"
+                path3 = str
+
+                img1 = cv2.imread(path1,cv2.IMREAD_COLOR)
+                img1 = cv2.cvtColor(img1,cv2.COLOR_BGR2RGB)
+                img2 = cv2.imread(path2,cv2.IMREAD_COLOR)       # For Morph
+                img2 = cv2.cvtColor(img2,cv2.COLOR_BGR2RGB)
+                img3 = cv2.imread(path3,cv2.IMREAD_COLOR)
+                img3 = cv2.cvtColor(img3,cv2.COLOR_BGR2RGB)
+
+            else:
             
-            img1 = cv2.imread(path4,cv2.IMREAD_COLOR)
-            img1 = cv2.cvtColor(img1,cv2.COLOR_BGR2RGB)
-            img2 = cv2.imread(path4,cv2.IMREAD_COLOR)        # For non morph
-            img2 = cv2.cvtColor(img2,cv2.COLOR_BGR2RGB)
-            img3 = cv2.imread(path4,cv2.IMREAD_COLOR)
-            img3 = cv2.cvtColor(img3,cv2.COLOR_BGR2RGB)
-
-        elif args.dataset == 'MOR':
-
-            str = val_dirs[idx]
-            # print(str)                   # For morph images 
-
-            pattern = re.compile(r'\d+\_\d+\_\d+')
-            m = re.search(pattern,str)
-
-            m1 = m.group(0)
-
-            path1 = self.current_path + "/datasets/MOR/set1/"+ "Mor" +m1 +".jpg"
-            path2 = self.current_path + "/datasets/MOR/set1/"+ "Mor" +m1 +".jpg"
-            path3 = str
-
-            img1 = cv2.imread(path1,cv2.IMREAD_COLOR)
-            img1 = cv2.cvtColor(img1,cv2.COLOR_BGR2RGB)
-            img2 = cv2.imread(path2,cv2.IMREAD_COLOR)       # For Morph
-            img2 = cv2.cvtColor(img2,cv2.COLOR_BGR2RGB)
-            img3 = cv2.imread(path3,cv2.IMREAD_COLOR)
-            img3 = cv2.cvtColor(img3,cv2.COLOR_BGR2RGB)
+                path4 = val1_dirs[idx]                           #For non morph images
+                
+                img1 = cv2.imread(path4,cv2.IMREAD_COLOR)
+                img1 = cv2.cvtColor(img1,cv2.COLOR_BGR2RGB)
+                img2 = cv2.imread(path4,cv2.IMREAD_COLOR)        
+                img2 = cv2.cvtColor(img2,cv2.COLOR_BGR2RGB)
+                img3 = cv2.imread(path4,cv2.IMREAD_COLOR)
+                img3 = cv2.cvtColor(img3,cv2.COLOR_BGR2RGB)
 
 
         gt1 = TF.resize(TF.to_pil_image(img1), [args.in_size, args.in_size])
@@ -204,30 +221,12 @@ def run_eval(args):
         running_ssim.append(ssim)
 
         if args.save_output:
-
-            if args.dataset == 'AMSL':
-
-                # plt.imsave(os.path.join("./eval_output/AMSL/Morph"+str[-14:-4] + '_input.png'), img_mix)
-                # plt.imsave(os.path.join("./eval_output/AMSL/Morph"+str[-14:-4] + '_gt1.png'), gt1)
-                # plt.imsave(os.path.join("./eval_output/AMSL/Morph"+str[-14:-4] + '_gt2.png'), gt2)
-                # plt.imsave(os.path.join("./eval_output/AMSL/Morph"+str[-14:-4] + '_output1.png'), G_pred1)
-                # plt.imsave(os.path.join("./eval_output/AMSL/Morph"+str[-14:-4] + '_output2.png'), G_pred2)
-            
-            
-                plt.imsave(os.path.join("./eval_output/AMSL/Non_Morph"+path4[-14:-4] + '_input.png'), img_mix)
-                plt.imsave(os.path.join("./eval_output/AMSL/Non_Morph"+path4[-14:-4] + '_gt1.png'), gt1)
-                plt.imsave(os.path.join("./eval_output/AMSL/Non_Morph"+path4[-14:-4] + '_gt2.png'), gt2)
-                plt.imsave(os.path.join("./eval_output/AMSL/Non_Morph"+path4[-14:-4] + '_output1.png'), G_pred1)
-                plt.imsave(os.path.join("./eval_output/AMSL/Non_Morph"+path4[-14:-4] + '_output2.png'), G_pred2)
-
-            else:
-                 
-                plt.imsave(os.path.join("./eval_output/MOR/Morph"+path4[-14:-4] + '_input.png'), img_mix)
-                plt.imsave(os.path.join("./eval_output/MOR/Morph"+path4[-14:-4] + '_gt1.png'), gt1)
-                plt.imsave(os.path.join("./eval_output/MOR/Morph"+path4[-14:-4] + '_gt2.png'), gt2)
-                plt.imsave(os.path.join("./eval_output/MOR/Morph"+path4[-14:-4] + '_output1.png'), G_pred1)
-                plt.imsave(os.path.join("./eval_output/MOR/Morph"+path4[-14:-4] + '_output2.png'), G_pred2)
-
+              
+                plt.imsave(os.path.join("./eval_output/"+args.dataset+"/"+args.test_mode+path4[-14:-4] + '_input.png'), img_mix)
+                plt.imsave(os.path.join("./eval_output/"+args.dataset+"/"+args.test_mode+path4[-14:-4] + '_gt1.png'), gt1)
+                plt.imsave(os.path.join("./eval_output/"+args.dataset+"/"+args.test_mode+path4[-14:-4] + '_gt2.png'), gt2)
+                plt.imsave(os.path.join("./eval_output/"+args.dataset+"/"+args.test_mode+path4[-14:-4] + '_output1.png'), G_pred1)
+                plt.imsave(os.path.join("./eval_output/"+args.dataset+"/"+args.test_mode+path4[-14:-4] + '_output2.png'), G_pred2)
 
         print('id: %d, running psnr: %.4f, running ssim: %.4f'
               % (idx, np.mean(running_psnr), np.mean(running_ssim)))
