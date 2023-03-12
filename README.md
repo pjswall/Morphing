@@ -8,7 +8,6 @@
 </div>
 </br>
 
-<<<<<<< HEAD
 # Requirement
 =======
 ## Table of Contents
