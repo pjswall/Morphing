@@ -135,4 +135,4 @@ If you use this code for your research, please cite our paper:
 
 ## Note
 
-If you find any bugs in this code or experience issues please report it to Issues page on the Github repo or email parteek.jaiswal@reserach.iiit.ac.in
+If you find any bugs in this code or experience issues please report it to Issues page on the Github repo or email parteek.jaiswal@research.iiit.ac.in
