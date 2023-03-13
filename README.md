@@ -50,7 +50,7 @@ Please install following packages
 
 </br>
 Collect the morphed dataset from the original authors and then split into train and test sets using `split.py`. Please refer to the paper for training and test distributions. In this repository, we have provided supporting code for the AMSL dataset, you can follow the same process for other datasets. We followed the filenaming convention provided in [github repo](https://github.com/jiupinjia/Deep-adversarial-decomposition). Ensure that when image pairs are provided for training, both morphed and ground-truth images used in creating the morph have the same filename.  
-For loading data you need check wheather the respective class has been called or passed while doing training. Same applied for all the dataset create a class check wheather naming conventions are matching or not otherwise try changing the names of files.
+
 
 ## Directory Structure for Datasets
 
