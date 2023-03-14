@@ -45,11 +45,13 @@ Please install following packages
 - psutil==3.4.2
 - matplotlib
 
+By using above python modules you will be able to create the environment and it will work in most cases but if its not working then you can use requirements file. The only issue with requirements file is that in some cases but those are related to specific platform you are using to create the environment.
+
 ## Data preprocessing
 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFLdAmzXI0emjIfStSYtGBWCS3oLz_n_0YGQ&usqp=CAU" width="800px" height="250px" alt="architecture.jpg" style="display:block; margin:auto">
 
 </br>
-Collect the morphed dataset from the original authors and then split into train and test sets using `split.py`. Please refer to the paper for training and test distributions. In this repository, we have provided supporting code for the AMSL dataset, you can follow the same process for other datasets. We followed the filenaming convention provided in [github repo](https://github.com/jiupinjia/Deep-adversarial-decomposition). Ensure that when image pairs are provided for training, both morphed and ground-truth images used in creating the morph have the same filename.  
+Collect the morphed dataset from the original authors and then split into train and test sets using. You can split the train and test code as per labelling of data for example if label is like 01_02_45N it can be interpreted as 1st set of images morphed with 2nd set and the serial no. used is 45. In similar order you can split your train and test data. Please refer to the paper for training and test distributions. In this repository, we have provided supporting code for the AMSL dataset, you can follow the same process for other datasets. We followed the filenaming convention provided in [github repo](https://github.com/jiupinjia/Deep-adversarial-decomposition). Ensure that when image pairs are provided for training, both morphed and ground-truth images used in creating the morph have the same filename.  
 
 
 ## Directory Structure for Datasets
@@ -61,7 +63,8 @@ Collect the morphed dataset from the original authors and then split into train 
        ├── Morph
        ├── Nonmorph
        └── orig
-   
+
+Folder structure for training here it shows that AMSL dataset contains three different subfolders namely Morph, Nonmorph and Original where morph folder contain all the morph images, Nonmorph contains the smiling and neutral images of subjects and original folder contain neutral images of subjects.
         
 ```
 ## Directory Structure for test outputs
@@ -73,6 +76,7 @@ Collect the morphed dataset from the original authors and then split into train 
        ├── Morph
        ├── Nonmorph
 
+Folder structure for test output here it shows that output of Morph and Nonmorph images. Morph folder contains morph image ground-truth 1 and ground-truth 2 images then Output 1 and Output 2 images respectively. Similarly output of nonmorph images contains nonmorph image ground-truth and output images. 
 
 ```
 
