@@ -61,7 +61,7 @@ jupyter-server==1.15.6
 jupyterlab==3.3.2
 jupyterlab-pygments==0.1.2
 jupyterlab-server==2.11.2
-keras==2.8.0
+keras==3.11.3
 Keras-Preprocessing==1.1.2
 kiwisolver @ file:///opt/conda/conda-bld/kiwisolver_1638569886207/work
 libclang==13.0.0
