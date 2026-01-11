@@ -142,7 +142,7 @@ tf-estimator-nightly==2.8.0.dev2021122109
 threadpoolctl==3.1.0
 tifffile==2020.10.1
 toolz @ file:///tmp/build/80754af9/toolz_1636545406491/work
-torch==1.9.0
+torch==2.9.0
 torchaudio==0.9.0a0+33b2469
 torchvision==0.10.0
 tornado @ file:///home/conda/feedstock_root/build_artifacts/tornado_1610094704591/work
@@ -153,6 +153,7 @@ urllib3 @ file:///opt/conda/conda-bld/urllib3_1643638302206/work
 wcwidth==0.2.5
 webencodings==0.5.1
 websocket-client==1.3.1
-Werkzeug==2.0.3
+Werkzeug==3.1.5
 wrapt==1.14.0
 zipp==3.7.0
+urllib3>=2.6.3 # not directly required, pinned by Snyk to avoid a vulnerability
