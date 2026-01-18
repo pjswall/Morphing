@@ -30,7 +30,7 @@ defusedxml==0.7.1
 dgl==0.8.1
 dill==0.3.4
 entrypoints==0.4
-filelock==3.6.0
+filelock==3.20.3
 Flask==2.0.3
 flatbuffers==2.0
 fonttools==4.25.0
