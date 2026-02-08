@@ -155,4 +155,4 @@ webencodings==0.5.1
 websocket-client==1.3.1
 Werkzeug==2.0.3
 wrapt==1.14.0
-zipp==3.7.0
+zipp==3.19.1
